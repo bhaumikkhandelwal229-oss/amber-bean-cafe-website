@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Amber & Bean | Jaipur Café</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #29251f;
+            background: #f7f1e5;
+        }
+
+        .cream-bg {
+            background: #f7f1e5;
+        }
+
+        .orange {
+            color: #b94e1c;
+        }
+
+        .orange-bg {
+            background: #b94e1c;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #b94e1c;
+        }
+
+        .nav-link.active {
+            color: #b94e1c;
+        }
+
+        .nav-link.active::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #b94e1c;
+            bottom: -8px;
+            left: 0;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .coffee-art {
+            background:
+                linear-gradient(
+                    135deg,
+                    #c98752 0%,
+                    #a75a31 50%,
+                    #713c26 100%
+                );
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coffee-circle {
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            background: rgba(255, 220, 175, 0.30);
+            border-radius: 50%;
+            right: 15px;
+            top: 0;
+        }
+
+        .coffee-circle-two {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            background: rgba(70, 54, 35, 0.50);
+            border-radius: 50%;
+            left: 20px;
+            bottom: 0;
+        }
+
+        .coffee-cup {
+            position: absolute;
+            width: 85px;
+            height: 85px;
+            background: #f8f0df;
+            border-radius: 10px 10px 38px 38px;
+            left: 50%;
+            top: 55%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cup-handle {
+            position: absolute;
+            width: 42px;
+            height: 52px;
+            border: 9px solid #f8f0df;
+            border-left: 0;
+            border-radius: 0 30px 30px 0;
+            right: -34px;
+            top: 12px;
+        }
+
+
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 17px;
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .stat-card strong {
+            display: block;
+            color: #b94e1c;
+            font-size: 15px;
+        }
+
+        .stat-card span {
+            display: block;
+            margin-top: 5px;
+            font-size: 9px;
+            color: #777;
+        }
+
+        .white-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .white-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .white-card small {
+            color: #b94e1c;
+            font-size: 8px;
+        }
+
+        .white-card h3 {
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .white-card p {
+            font-size: 10px;
+            line-height: 1.6;
+            color: #777;
+            margin-top: 7px;
+        }
+
+
+    
+
+        .testimonial {
+            background: #24211d;
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+        }
+
+        .testimonial p {
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .testimonial span {
+            color: #c56a35;
+            font-size: 9px;
+            display: block;
+            margin-top: 15px;
+        }
+
+
+        /* =========================
+           MENU CARDS
+        ========================= */
+
+        .menu-card {
+            background: white;
+            border-radius: 10px;
+            padding: 18px;
+            min-height: 125px;
+            transition: 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .menu-card small {
+            color: #c46a35;
+            font-size: 7px;
+            letter-spacing: 1px;
+        }
+
+        .menu-card h3 {
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .menu-card p {
+            font-size: 9px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .menu-card strong {
+            display: block;
+            color: #b94e1c;
+            font-size: 11px;
+            margin-top: 12px;
+        }
+
+
+    
+
+        .hours-dark {
+            background: #24211d;
+            color: white;
+            border-radius: 10px;
+            padding: 22px;
+        }
+
+        .hours-dark small,
+        .hours-green small {
+            font-size: 7px;
+            letter-spacing: 1px;
+        }
+
+        .hours-dark h3 {
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        .hours-green {
+            background: #5c7050;
+            color: white;
+            border-radius: 10px;
+            padding: 22px;
+        }
+
+        .hours-green h3 {
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .hours-green p {
+            font-size: 9px;
+            margin-top: 15px;
+        }
+
+
+        
+
+        .gallery-item {
+            height: 180px;
+            border-radius: 9px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-one {
+            background: linear-gradient(135deg, #b86b39, #704129);
+        }
+
+        .gallery-two {
+            background: linear-gradient(135deg, #747d5a, #394632);
+        }
+
+        .gallery-three {
+            background: linear-gradient(135deg, #b36b3e, #6d3d28);
+        }
+
+        .gallery-four {
+            background: linear-gradient(135deg, #52636b, #26363b);
+        }
+
+        .gallery-five {
+            background: linear-gradient(135deg, #936344, #563923);
+        }
+
+        .gallery-six {
+            background: linear-gradient(135deg, #754a31, #39271d);
+        }
+
+        .gallery-item::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 220, 175, 0.25);
+            border-radius: 50%;
+            right: 10px;
+            top: 0;
+        }
+
+        .gallery-cup {
+            position: absolute;
+            width: 65px;
+            height: 55px;
+            background: #f6efe1;
+            border-radius: 5px 5px 20px 20px;
+            left: 50%;
+            top: 58%;
+            transform: translate(-50%, -50%);
+        }
+
+        .gallery-cup::after {
+            content: "";
+            position: absolute;
+            width: 28px;
+            height: 32px;
+            border: 7px solid #f6efe1;
+            border-left: 0;
+            border-radius: 0 20px 20px 0;
+            right: -25px;
+            top: 5px;
+        }
+
+
+
+        .form-label {
+            display: block;
+            font-size: 9px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .form-input {
+            width: 100%;
+            border: 0;
+            outline: none;
+            background: #f8f3e8;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 10px;
+        }
+
+        .form-input:focus {
+            box-shadow: 0 0 0 2px rgba(185, 78, 28, 0.2);
+        }
+
+
+        .map-box {
+            height: 180px;
+            background: #d8c8a5;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #665b45;
+        }
+
+        .map-box span {
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        .map-box small {
+            margin-top: 6px;
+            font-size: 7px;
+        }
+
+
+    
+
+        @media (max-width: 768px) {
+
+            .desktop-nav {
+                display: none;
+            }
+
+            .coffee-art {
+                height: 270px;
+            }
+
+            .gallery-item {
+                height: 220px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+
+
+<header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+        <!-- LOGO -->
+
+        <button onclick="showPage('home')"
+                class="text-left">
+
+            <div class="text-xl font-bold text-[#b64c1b]">
+                AMBER & BEAN
+            </div>
+
+            <div class="text-[8px] tracking-[3px] text-gray-500">
+                DESIGN FOUNDATION
+            </div>
+
+        </button>
+
+
+        <!-- DESKTOP MENU -->
+
+        <div class="desktop-nav flex items-center gap-8 text-xs text-gray-600">
+
+            <button onclick="showPage('home')"
+                    id="nav-home"
+                    class="nav-link active">
+                Home
+            </button>
+
+            <button onclick="showPage('menu')"
+                    id="nav-menu"
+                    class="nav-link">
+                Menu
+            </button>
+
+            <button onclick="showPage('gallery')"
+                    id="nav-gallery"
+                    class="nav-link">
+                Gallery
+            </button>
+
+            <button onclick="showPage('contact')"
+                    id="nav-contact"
+                    class="nav-link">
+                Contact
+            </button>
+
+        </div>
+
+
+        <!-- CTA -->
+
+        <button onclick="showPage('contact')"
+                class="bg-[#b94e1c] text-white px-6 py-3 rounded-full text-xs hover:bg-[#963c13] transition">
+
+            Find & Visit
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+<section id="home" class="page active cream-bg">
+
+    <div class="max-w-7xl mx-auto px-6 py-12 md:py-16">
+
+
+        <!-- HERO -->
+
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+
+
+            <!-- LEFT -->
+
+            <div>
+
+                <h1 class="text-4xl md:text-5xl leading-tight font-medium text-[#27231e]">
+
+                    A Jaipur café with
+
+                    <span class="text-[#b94e1c]">
+                        a little more warmth.
+                    </span>
+
+                </h1>
+
+
+                <p class="mt-5 text-sm leading-6 text-gray-600 max-w-lg">
+
+                    Specialty coffee, all-day breakfast and a relaxed
+                    space in the heart of Jaipur.
+
+                </p>
+
+
+                <div class="mt-7 flex gap-3">
+
+                    <button onclick="showPage('menu')"
+                            class="bg-[#b94e1c] text-white px-6 py-3 rounded-full text-xs">
+
+                        Explore the Menu
+
+                    </button>
+
+
+                    <button onclick="showPage('gallery')"
+                            class="bg-white px-6 py-3 rounded-full text-xs border">
+
+                        Visit Us
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HERO ART -->
+
+            <div class="coffee-art h-[320px] rounded-2xl">
+
+
+                <div class="absolute top-5 left-6 text-white text-xs font-semibold">
+
+                    JAIPUR • COFFEE •
+                    <br>
+                    COMMUNITY
+
+                </div>
+
+
+                <div class="coffee-circle"></div>
+
+                <div class="coffee-circle-two"></div>
+
+
+                <div class="coffee-cup">
+
+                    <div class="cup-handle"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- INTRO -->
+
+        <div class="mt-20">
+
+            <p class="uppercase text-[9px] tracking-[3px] text-[#b94e1c]">
+
+                Our Approach
+
+            </p>
+
+
+            <h2 class="text-2xl md:text-3xl mt-2">
+
+                Made for slow mornings & good conversations.
+
+            </h2>
+
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+
+
+                <div class="stat-card">
+
+                    <strong>4.8/5</strong>
+
+                    <span>
+                        Local rating
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <strong>7 days</strong>
+
+                    <span>
+                        Open weekly
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <strong>8 AM–11 PM</strong>
+
+                    <span>
+                        Daily hours
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <strong>100%</strong>
+
+                    <span>
+                        Friendly vibe
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- WHY CHOOSE US -->
+
+        <div class="mt-14">
+
+            <h2 class="text-lg">
+                Why choose us
+            </h2>
+
+
+            <div class="grid md:grid-cols-3 gap-4 mt-5">
+
+
+                <div class="white-card">
+
+                    <small>#01</small>
+
+                    <h3>
+                        Fresh, every day
+                    </h3>
+
+                    <p>
+                        Beans roasted for good flavour and prepared
+                        in small batches.
+                    </p>
+
+                </div>
+
+
+                <div class="white-card">
+
+                    <small>#02</small>
+
+                    <h3>
+                        Jaipur at heart
+                    </h3>
+
+                    <p>
+                        A warm local atmosphere inspired by Jaipur's
+                        colours and neighbourhoods.
+                    </p>
+
+                </div>
+
+
+                <div class="white-card">
+
+                    <small>#03</small>
+
+                    <h3>
+                        Easy to visit
+                    </h3>
+
+                    <p>
+                        Relaxed seating, Wi-Fi and comfortable spaces
+                        for everyone.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TESTIMONIALS -->
+
+        <div class="mt-14">
+
+            <h2 class="text-lg">
+                What guests say
+            </h2>
+
+
+            <div class="grid md:grid-cols-2 gap-5 mt-5">
+
+
+                <div class="testimonial">
+
+                    <p>
+                        "The coffee, ambience and staff are exactly
+                        what Jaipur café culture should feel like."
+                    </p>
+
+                    <span>
+                        — Raj, Jaipur
+                    </span>
+
+                </div>
+
+
+                <div class="testimonial">
+
+                    <p>
+                        "Perfect place for breakfast before work.
+                        The menu is simple and fresh."
+                    </p>
+
+                    <span>
+                        — Anuj, Jaipur
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CTA -->
+
+        <div class="mt-14 bg-[#b94e1c] text-white rounded-xl px-7 py-5
+                    flex flex-col md:flex-row justify-between
+                    items-center gap-4">
+
+            <span class="text-sm">
+                Ready for your next coffee break?
+            </span>
+
+
+            <button onclick="showPage('contact')"
+                    class="bg-white text-[#333] px-6 py-2.5 rounded-full text-xs">
+
+                Reserve a Table
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="menu" class="page cream-bg min-h-screen">
+
+    <div class="max-w-6xl mx-auto px-6 py-12">
+
+
+        <p class="uppercase tracking-[3px] text-[9px] text-[#b94e1c]">
+            Amber & Bean
+        </p>
+
+
+        <h1 class="text-4xl font-medium mt-2">
+            Menu & Services
+        </h1>
+
+
+        <p class="text-sm text-gray-500 mt-3">
+            A clean café-style menu for drinks, food and experiences.
+        </p>
+
+
+
+        <!-- MENU -->
+
+        <div class="grid md:grid-cols-3 gap-4 mt-8">
+
+
+            <div class="menu-card">
+
+                <small>ESPRESSO</small>
+
+                <h3>
+                    Espresso
+                </h3>
+
+                <p>
+                    Freshly prepared · Jaipur kitchen
+                </p>
+
+                <strong>
+                    ₹140
+                </strong>
+
+            </div>
+
+
+            <div class="menu-card">
+
+                <small>ESPRESSO BAR</small>
+
+                <h3>
+                    Cappuccino
+                </h3>
+
+                <p>
+                    Freshly prepared · Jaipur kitchen
+                </p>
+
+                <strong>
+                    ₹190
+                </strong>
+
+            </div>
+
+
+            <div class="menu-card">
+
+                <small>ESPRESSO BAR</small>
+
+                <h3>
+                    Cold Brew
+                </h3>
+
+                <p>
+                    Freshly prepared · Jaipur kitchen
+                </p>
+
+                <strong>
+                    ₹210
+                </strong>
+
+            </div>
+
+
+            <div class="menu-card">
+
+                <small>BREAKFAST</small>
+
+                <h3>
+                    Avocado Toast
+                </h3>
+
+                <p>
+                    Freshly prepared · Jaipur kitchen
+                </p>
+
+                <strong>
+                    ₹280
+                </strong>
+
+            </div>
+
+
+            <div class="menu-card">
+
+                <small>BREAKFAST</small>
+
+                <h3>
+                    Masala Omelette
+                </h3>
+
+                <p>
+                    Freshly prepared · Jaipur kitchen
+                </p>
+
+                <strong>
+                    ₹240
+                </strong>
+
+            </div>
+
+
+            <div class="menu-card">
+
+                <small>BREAKFAST</small>
+
+                <h3>
+                    French Toast
+                </h3>
+
+                <p>
+                    Freshly prepared · Jaipur kitchen
+                </p>
+
+                <strong>
+                    ₹260
+                </strong>
+
+            </div>
+
+
+            <div class="menu-card">
+
+                <small>ALL DAY</small>
+
+                <h3>
+                    Pasta Alfredo
+                </h3>
+
+                <p>
+                    Freshly prepared · Jaipur kitchen
+                </p>
+
+                <strong>
+                    ₹320
+                </strong>
+
+            </div>
+
+
+            <div class="menu-card">
+
+                <small>ALL DAY</small>
+
+                <h3>
+                    Paneer Sandwich
+                </h3>
+
+                <p>
+                    Freshly prepared · Jaipur kitchen
+                </p>
+
+                <strong>
+                    ₹290
+                </strong>
+
+            </div>
+
+
+            <div class="menu-card">
+
+                <small>HEALTHY</small>
+
+                <h3>
+                    House Salad
+                </h3>
+
+                <p>
+                    Freshly prepared · Jaipur kitchen
+                </p>
+
+                <strong>
+                    ₹250
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HOURS -->
+
+        <section class="mt-10">
+
+            <h2 class="text-sm mb-4">
+                Business hours
+            </h2>
+
+
+            <div class="grid md:grid-cols-2 gap-4">
+
+
+                <div class="hours-dark">
+
+                    <small>
+                        MON–FRI
+                    </small>
+
+                    <h3>
+                        8:00 AM — 11:00 PM
+                    </h3>
+
+
+                    <small class="mt-4 block">
+                        SAT–SUN
+                    </small>
+
+                    <h3>
+                        8:00 AM — 12:00 AM
+                    </h3>
+
+                </div>
+
+
+                <div class="hours-green">
+
+                    <small>
+                        WHY CHOOSE US
+                    </small>
+
+                    <h3>
+                        Local ingredients • quick service • cozy seating
+                    </h3>
+
+                    <p>
+                        Dine in · takeaway · private events
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
+
+
+
+<section id="gallery" class="page cream-bg min-h-screen">
+
+    <div class="max-w-6xl mx-auto px-6 py-12">
+
+
+        <p class="uppercase tracking-[3px] text-[9px] text-[#b94e1c]">
+            Amber & Bean
+        </p>
+
+
+        <h1 class="text-4xl font-medium mt-2">
+            A glimpse inside
+        </h1>
+
+
+        <p class="text-sm text-gray-500 mt-3">
+            Responsive image grid — 3 columns desktop,
+            2 tablet, 1 mobile.
+        </p>
+
+
+
+        <!-- GALLERY -->
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+
+
+            <div class="gallery-item gallery-one">
+
+                <div class="gallery-cup"></div>
+
+            </div>
+
+
+            <div class="gallery-item gallery-two">
+
+                <div class="gallery-cup"></div>
+
+            </div>
+
+
+            <div class="gallery-item gallery-three">
+
+                <div class="gallery-cup"></div>
+
+            </div>
+
+
+            <div class="gallery-item gallery-four">
+
+                <div class="gallery-cup"></div>
+
+            </div>
+
+
+            <div class="gallery-item gallery-five">
+
+                <div class="gallery-cup"></div>
+
+            </div>
+
+
+            <div class="gallery-item gallery-six">
+
+                <div class="gallery-cup"></div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- CTA -->
+
+        <div class="bg-white rounded-xl p-6 mt-5">
+
+
+            <h2 class="text-lg">
+                Bring your next gathering here.
+            </h2>
+
+
+            <p class="text-xs text-gray-500 mt-2">
+                Birthday, team breakfast, date or a quiet work session.
+            </p>
+
+
+            <button onclick="showPage('contact')"
+                    class="inline-block mt-4 bg-[#b94e1c]
+                           text-white px-6 py-2.5 rounded-full text-xs">
+
+                Plan a Visit
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+<section id="contact" class="page cream-bg min-h-screen">
+
+    <div class="max-w-6xl mx-auto px-6 py-12">
+
+
+        <p class="uppercase tracking-[3px] text-[9px] text-[#b94e1c]">
+            Amber & Bean
+        </p>
+
+
+        <h1 class="text-4xl font-medium mt-2">
+            Contact & Visit
+        </h1>
+
+
+        <p class="text-sm text-gray-500 mt-3">
+            Accessible form + address + map area, ready for real business details.
+        </p>
+
+
+
+        <div class="grid md:grid-cols-2 gap-5 mt-8">
+
+
+            <!-- CONTACT FORM -->
+
+            <div class="bg-white rounded-xl p-6">
+
+
+                <h2 class="text-sm font-medium">
+                    Send us a message
+                </h2>
+
+
+                <form id="contactForm" class="mt-5 space-y-4">
+
+
+                    <div>
+
+                        <label class="form-label">
+                            Name
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="Your name"
+                            class="form-input"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label class="form-label">
+                            Phone
+                        </label>
+
+                        <input
+                            type="tel"
+                            placeholder="+91 XXXXX XXXXX"
+                            class="form-input"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label class="form-label">
+                            Service
+                        </label>
+
+                        <select class="form-input">
+
+                            <option>
+                                Select a service
+                            </option>
+
+                            <option>
+                                Table Reservation
+                            </option>
+
+                            <option>
+                                Private Event
+                            </option>
+
+                            <option>
+                                Catering
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label class="form-label">
+                            Message
+                        </label>
+
+                        <textarea
+                            rows="4"
+                            placeholder="Tell us what you need..."
+                            class="form-input"></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="bg-[#b94e1c] text-white px-6 py-2.5
+                               rounded-full text-xs">
+
+                        Send Message
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+
+            <!-- LOCATION -->
+
+            <div class="bg-[#211f1b] rounded-xl p-6 text-white">
+
+
+                <h2 class="text-sm">
+                    Visit Amber & Bean
+                </h2>
+
+
+                <p class="text-xs text-gray-300 mt-3">
+                    C-Scheme, Jaipur, Rajasthan
+                </p>
+
+
+                <p class="text-xs text-gray-300 mt-1">
+                    +91 90000 00000
+                </p>
+
+
+                <p class="text-xs text-gray-300 mt-1">
+                    hello@amberbean.in
+                </p>
+
+
+
+                
+
+                <div class="map-box mt-8">
+
+                    <span>
+                        MAP EMBED
+                    </span>
+
+                    <small>
+                        C-Scheme, Jaipur
+                    </small>
+
+                </div>
+
+
+                <p class="text-[10px] text-gray-400 mt-4">
+                    Open daily · Reservations recommended on weekends.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+<footer class="bg-[#25221e] text-white text-center py-6 text-xs">
+
+    © 2026 Amber & Bean. All rights reserved.
+
+</footer>
+
+
+
+
+
+<script>
+
+    function showPage(pageName) {
+
+        /* Hide all pages */
+
+        const pages = document.querySelectorAll(".page");
+
+        pages.forEach(function(page) {
+            page.classList.remove("active");
+        });
+
+
+        /* Show selected page */
+
+        const selectedPage = document.getElementById(pageName);
+
+        if (selectedPage) {
+            selectedPage.classList.add("active");
+        }
+
+
+        /* Remove active from navbar */
+
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        navLinks.forEach(function(link) {
+            link.classList.remove("active");
+        });
+
+
+        /* Add active navbar */
+
+        const activeNav = document.getElementById("nav-" + pageName);
+
+        if (activeNav) {
+            activeNav.classList.add("active");
+        }
+
+
+        /* Scroll to top */
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+
+    /* Contact Form */
+
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        alert("Thank you! Your message has been submitted.");
+
+        this.reset();
+
+    });
+
+</script>
+
+
+</body>
+</html>
